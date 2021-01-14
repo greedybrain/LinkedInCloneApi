@@ -1,5 +1,6 @@
 //! NPM Modules
 // init express app
+const cors = require("cors");
 const express = require("express");
 const app = express();
 
@@ -15,6 +16,15 @@ const success = chalk.bold.greenBright.inverse;
 
 //! Middleware definition
 app.use(express.json());
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+	res.header("Access-Control-Allow-Headers", "*");
+	if (req.method === "OPTIONS") {
+		res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+		return res.status(200).json({});
+	}
+	next();
+});
 
 //! Mounting Routers
 app.use("/users", userRouter);

@@ -8,6 +8,7 @@ const {
 	loginUser,
 	logoutUser,
 	logoutAllSessions,
+	getCurrentUser,
 } = require("../controllers/users_controller");
 const ifAuthorized = require("../middleware/auth.js");
 
@@ -16,6 +17,8 @@ router.post("/", createUser); // signup
 router.post("/login", loginUser); // login
 router.post("/logout", ifAuthorized, logoutUser); // logout
 router.post("/logout/all", ifAuthorized, logoutAllSessions); // logout all sessions
+
+router.get("/me", ifAuthorized, getCurrentUser);
 
 //! Export
 module.exports = router;

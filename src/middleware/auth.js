@@ -17,7 +17,6 @@ const ifAuthorized = async (req, res, next) => {
 
 		req.tokenValue = tokenValue;
 		req.user = user;
-		console.log(req.user);
 		next();
 	} catch (error) {
 		res.status(401).send({ error: "Please authenticate" });
