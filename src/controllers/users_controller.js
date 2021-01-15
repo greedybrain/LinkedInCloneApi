@@ -2,6 +2,14 @@
 const User = require("../models/user_model");
 
 module.exports = {
+	getAllUsers: async (req, res) => {
+		try {
+			const users = await User.find();
+			res.status(200).send(users);
+		} catch (error) {
+			res.status(400).send(error.message);
+		}
+	},
 	getCurrentUser: async (req, res) => {
 		res.send(req.user);
 	},
@@ -16,9 +24,9 @@ module.exports = {
 		}
 	},
 	loginUser: async (req, res) => {
-		const { email_or_phone, password } = req.body;
+		const { email, password } = req.body;
 		try {
-			const user = await User.findByCredentials(email_or_phone, password);
+			const user = await User.findByCredentials(email, password);
 			const tokenValue = await user.generateAuthToken();
 			return res.status(200).send({ user, tokenValue });
 		} catch (error) {

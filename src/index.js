@@ -1,6 +1,5 @@
 //! NPM Modules
 // init express app
-const cors = require("cors");
 const express = require("express");
 const app = express();
 
