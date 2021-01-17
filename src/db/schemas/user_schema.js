@@ -8,6 +8,11 @@ const TokenSchema = require("../schemas/token_schema");
 //! Schema definition
 const UserSchema = new Schema(
 	{
+		name: {
+			type: String,
+			required: true,
+			trim: true,
+		},
 		email: {
 			type: String,
 			required: true,
@@ -29,6 +34,10 @@ const UserSchema = new Schema(
 						"Password is invalid, password cannot contain the word password"
 					);
 			},
+		},
+		headline: {
+			type: String,
+			required: true,
 		},
 		tokens: {
 			type: [TokenSchema],

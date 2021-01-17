@@ -7,6 +7,7 @@ const app = express();
 require("dotenv").config(); // startup / set configurations
 require("./db/db_setup");
 const userRouter = require("./routes/user_routes");
+const postRouter = require("./routes/post_routes");
 
 //! Custom vars
 const chalk = require("chalk");
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 
 //! Mounting Routers
 app.use("/users", userRouter);
+app.use("/posts", postRouter);
 
 //! Listening
 const PORT = process.env.PORT || 5000;
