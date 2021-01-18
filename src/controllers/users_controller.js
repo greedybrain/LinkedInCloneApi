@@ -11,7 +11,9 @@ module.exports = {
 		}
 	},
 	getCurrentUser: async (req, res) => {
-		res.send(req.user);
+		const { user: data } = req;
+		const { posts } = data;
+		res.send({ data, posts });
 	},
 	createUser: async (req, res) => {
 		const user = new User(req.body);

@@ -6,6 +6,7 @@ const app = express();
 //! Custom Modules
 require("dotenv").config(); // startup / set configurations
 require("./db/db_setup");
+// require("./utils/s3_bucket");
 const userRouter = require("./routes/user_routes");
 const postRouter = require("./routes/post_routes");
 
