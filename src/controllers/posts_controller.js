@@ -42,7 +42,9 @@ module.exports = {
 
 			updates.forEach((update) => (post[update] = req.body[update]));
 			await post.save();
-			return res.status(200).send(post);
+			return res
+				.status(200)
+				.send({ post, message: "Post updated successfully" });
 		} catch (error) {
 			res.status(400).send(error.message);
 		}
@@ -50,11 +52,13 @@ module.exports = {
 	deletePost: async (req, res) => {
 		try {
 			const post = await Post.findOneAndRemove({
-				_id: req.params.id,
+				_id: req.params.post_id,
 				user: req.user._id,
 			});
 			if (!post) return res.status(404).send();
-			return res.status(200).send(post);
+			return res
+				.status(200)
+				.send({ post, message: `Post deleted by ${req.user.name}` });
 		} catch (error) {
 			res.status(400).send(error.message);
 		}

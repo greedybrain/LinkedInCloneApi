@@ -25,6 +25,9 @@ module.exports = {
 			res.status(400).send(error.message);
 		}
 	},
+	uploadAvatar: (req, res) => {
+		res.status(200).send("Avatar uploaded");
+	},
 	loginUser: async (req, res) => {
 		const { email, password } = req.body;
 		try {
