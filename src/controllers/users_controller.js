@@ -25,8 +25,35 @@ module.exports = {
 			res.status(400).send(error.message);
 		}
 	},
-	uploadAvatar: (req, res) => {
-		res.status(200).send("Avatar uploaded");
+	uploadAvatar: async (req, res) => {
+		try {
+			req.user.avatar = req.file.buffer;
+			await req.user.save();
+			console.log(req.user.avatar);
+			return res.status(201).send(req.user.avatar);
+		} catch (error) {
+			console.log(error.message);
+		}
+	},
+	getAvatar: async (req, res) => {
+		try {
+			const user = await User.findById(req.params.id);
+			if (!user || !user.avatar) throw new Error();
+
+			res.header("Content-Type", "image/jpg");
+			res.status(200).send(user.avatar);
+		} catch (error) {
+			res.status(404).send(error.message);
+		}
+	},
+	removeAvatar: async (req, res) => {
+		req.user.avatar = undefined;
+		try {
+			await req.user.save();
+			res.send();
+		} catch (error) {
+			console.log(error.message);
+		}
 	},
 	loginUser: async (req, res) => {
 		const { email, password } = req.body;

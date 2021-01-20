@@ -13,6 +13,9 @@ const PostSchema = new Schema(
 			required: true,
 			ref: "User",
 		},
+		postImage: {
+			type: Buffer
+		}
 	},
 	{
 		timestamps: true,

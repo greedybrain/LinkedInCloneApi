@@ -5,7 +5,6 @@ module.exports = {
 	getAllPosts: async (req, res) => {
 		try {
 			const posts = await Post.find().populate("user").exec();
-			console.log(posts);
 			res.status(200).send(posts);
 		} catch (error) {
 			res.status(400).send(error.message);
