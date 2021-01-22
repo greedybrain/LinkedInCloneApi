@@ -1,6 +1,9 @@
 //! NPM Modules
 const { Schema } = require("mongoose");
 
+//! Custom Modules
+const LikeSchema = require("./like_schema");
+
 //! Schema definition
 const PostSchema = new Schema(
 	{
@@ -13,9 +16,9 @@ const PostSchema = new Schema(
 			required: true,
 			ref: "User",
 		},
-		postImage: {
-			type: Buffer
-		}
+		likes: {
+			type: [LikeSchema],
+		},
 	},
 	{
 		timestamps: true,
