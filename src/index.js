@@ -9,6 +9,7 @@ require("./db/db_setup");
 const userRouter = require("./routes/user_routes");
 const postRouter = require("./routes/post_routes");
 const likeRouter = require("./routes/like_routes");
+const commentRouter = require("./routes/comment_routes");
 
 //! Custom vars
 const chalk = require("chalk");
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
 app.use("/likes", likeRouter);
+app.use("/comments", commentRouter);
 
 //! Listening
 const PORT = process.env.PORT || 5000;
