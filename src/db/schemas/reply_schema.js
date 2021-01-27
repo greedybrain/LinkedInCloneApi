@@ -1,11 +1,8 @@
 //! NPM Modules
 const { Schema } = require("mongoose");
 
-//! Custom Modules
-const ReplySchema = require('./reply_schema')
-
 //! Schema definition
-const CommentSchema = new Schema(
+const ReplySchema = new Schema(
 	{
 		content: {
 			type: String,
@@ -20,15 +17,17 @@ const CommentSchema = new Schema(
 		post: {
 			type: Schema.Types.ObjectId,
 			required: true,
-			ref: "Post",
+			ref: "User",
 		},
-		replies: {
-			type: [ReplySchema]
-		}
+		comment: {
+			type: Schema.Types.ObjectId,
+			required: true,
+			ref: "Comment",
+		},
 	},
 	{
 		timestamps: true,
 	}
 );
 
-module.exports = CommentSchema;
+module.exports = ReplySchema;

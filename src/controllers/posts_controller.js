@@ -40,6 +40,7 @@ module.exports = {
 			if (!post) return res.status(404).send();
 
 			updates.forEach((update) => (post[update] = req.body[update]));
+			await post.populate("user").execPopulate();
 			await post.save();
 			return res
 				.status(200)
