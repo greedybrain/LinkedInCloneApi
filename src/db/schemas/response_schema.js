@@ -2,10 +2,10 @@
 const { Schema } = require("mongoose");
 
 //! Custom Modules
-const ResponseSchema = require("./response_schema");
+// const ReplySchema = require("./reply_schema")
 
 //! Schema definition
-const ReplySchema = new Schema(
+const ResponseSchema = new Schema(
 	{
 		content: {
 			type: String,
@@ -27,8 +27,9 @@ const ReplySchema = new Schema(
 			required: true,
 			ref: "Comment",
 		},
-		responses: {
-			type: [ResponseSchema],
+		reply: {
+			type: Schema.Types.ObjectId,
+			required: true,
 		},
 	},
 	{
@@ -36,4 +37,4 @@ const ReplySchema = new Schema(
 	}
 );
 
-module.exports = ReplySchema;
+module.exports = ResponseSchema;
